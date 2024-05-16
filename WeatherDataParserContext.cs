@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace WeatherMonitoringApp
 {
     internal class WeatherDataParserContext
-
     {
         private IWeatherDataParser _parser;
         public WeatherDataParserContext(string inputData)
@@ -16,7 +15,7 @@ namespace WeatherMonitoringApp
             _parser = parserFactory.CreateParser(inputData);
         }
 
-        public IWeatherData ParseWeatherData(string inputData)
+        public WeatherData ParseWeatherData(string inputData)
         {
             return _parser.DataParse(inputData);
         }

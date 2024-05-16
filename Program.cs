@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Newtonsoft.Json;
-
-namespace WeatherMonitoringApp
+﻿namespace WeatherMonitoringApp
 {
     internal class Program
     {
@@ -12,7 +7,7 @@ namespace WeatherMonitoringApp
             Console.WriteLine("Welcome to Weather Monitoring and Reporting System");
 
             // Loading bot configurations from a JSON file
-            string configFilePath = @"C:\Users\HP\Desktop\University Files\BayanAboalrob.ComputerSystemEngineering\Trainings\FTS ASP.NET\C#\TASKS\WeatherMonitortingSystem\WeatherApp\botConfigurations.json";
+            var configFilePath = @"C:\Users\HP\Desktop\University Files\BayanAboalrob.ComputerSystemEngineering\Trainings\FTS ASP.NET\Projects_1\WeatherMonitoringApp\botConfigurations.json";
             Dictionary<string, BotConfiguration> botConfigurations = ConfigurationLoader.LoadConfigurations(configFilePath);
 
             // Creating weather bots based on loaded configurations
@@ -23,9 +18,9 @@ namespace WeatherMonitoringApp
                 string botType = kvp.Key;
                 BotConfiguration config = kvp.Value;
 
-                if (config.Enabled)
-                {
-                    switch (botType)
+                if (!config.Enabled)
+                    continue;
+                switch (botType)
                     {
                         case "RainBot":
                             bots.Add(new RainBot(config.Threshold, config.Message));
@@ -40,7 +35,6 @@ namespace WeatherMonitoringApp
                             Console.WriteLine($"Unknown bot type: {botType}");
                             break;
                     }
-                }
             }
 
             IWeatherSubject weatherStation = new WeatherStation(bots, null);
@@ -63,11 +57,11 @@ namespace WeatherMonitoringApp
             IWeatherDataParser xmlParser = parserFactory.CreateParser(xmlData);
 
 
-            IWeatherData jsonDataParsed = jsonParser.DataParse(jsonData);
+            WeatherData jsonDataParsed = jsonParser.DataParse(jsonData);
             weatherStation.SetWeatherData(jsonDataParsed);
 
 
-            IWeatherData xmlDataParsed = xmlParser.DataParse(xmlData);
+            WeatherData xmlDataParsed = xmlParser.DataParse(xmlData);
             weatherStation.SetWeatherData(xmlDataParsed);
         }
     }

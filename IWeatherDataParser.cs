@@ -8,6 +8,6 @@ namespace WeatherMonitoringApp
 {
     internal interface IWeatherDataParser
     {
-        IWeatherData DataParse(string inputData);
+        WeatherData DataParse(string inputData);
     }
 }

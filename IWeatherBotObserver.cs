@@ -8,6 +8,6 @@ namespace WeatherMonitoringApp
 {
     public interface IWeatherBotObserver
     {
-        public void Update(IWeatherData weatherData);
+        public void Update(WeatherData weatherData);
     }
 }

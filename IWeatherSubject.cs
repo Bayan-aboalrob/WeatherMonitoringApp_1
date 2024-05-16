@@ -11,6 +11,7 @@ namespace WeatherMonitoringApp
         void AddObserver(IWeatherBotObserver observer);
         void RemoveObserver(IWeatherBotObserver observer);
         void NotifyObservers();
-        void SetWeatherData(IWeatherData xmlDataParsed);
+        void SetWeatherData(WeatherData DataParsed);
+
     }
 }

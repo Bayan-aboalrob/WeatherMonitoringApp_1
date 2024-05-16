@@ -8,40 +8,40 @@ namespace WeatherMonitoringApp
 {
     internal class WeatherStation : IWeatherSubject
     {
-        private List<IWeatherBotObserver> observers = new List<IWeatherBotObserver>();
-        private IWeatherData WeatherData { get; set; }
+        private List<IWeatherBotObserver> _observers = new List<IWeatherBotObserver>();
+        private WeatherData _WeatherData { get; set; }
 
-        public WeatherStation(List<IWeatherBotObserver> observers, IWeatherData weatherData)
+        public WeatherStation(List<IWeatherBotObserver> observers, WeatherData weatherData)
         {
-            this.observers = observers;
-            WeatherData = null;
+            this._observers = observers;
+            _WeatherData = null;
 
         }
-        public void SetWeatherData(IWeatherData newWeatherData)
+        public void SetWeatherData(WeatherData newWeatherData)
         {
             // Update weather data and notify observers if it has changed
-            if (WeatherData == null || !WeatherData.Equals(newWeatherData))
+            if (_WeatherData == null || !_WeatherData.Equals(newWeatherData))
             {
-                WeatherData = newWeatherData;
+                _WeatherData = newWeatherData;
                 NotifyObservers();
             }
         }
         public void AddObserver(IWeatherBotObserver observer)
         {
-            observers.Add(observer);
+            _observers.Add(observer);
         }
         public void RemoveObserver(IWeatherBotObserver observer)
         {
-            observers.Remove(observer);
+            _observers.Remove(observer);
         }
 
         public void NotifyObservers()
         {
-            if (WeatherData != null)
+            if (_WeatherData != null)
             {
-                foreach (var observer in observers)
+                foreach (var observer in _observers)
                 {
-                    observer.Update(WeatherData);
+                    observer.Update(_WeatherData);
                 }
             }
         }

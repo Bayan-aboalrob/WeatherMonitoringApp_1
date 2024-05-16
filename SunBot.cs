@@ -17,7 +17,7 @@ namespace WeatherMonitoringApp
             this.message = message;
         }
 
-        public void Update(IWeatherData weatherData)
+        public void Update(WeatherData weatherData)
         {
             if (weatherData.Temperature > temperatureThreshold)
             {

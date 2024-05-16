@@ -10,16 +10,16 @@ namespace WeatherMonitoringApp
 {
     internal class JsonParser : IWeatherDataParser
     {
-        public IWeatherData DataParse(string inputData)
+        public WeatherData DataParse(string inputData)
         {
             JObject jsonObject = JObject.Parse(inputData);
 
             return new WeatherData
-            {
-                Location = (string)jsonObject["Location"],
-                Temperature = (double)jsonObject["Temperature"],
-                Humidity = (double)jsonObject["Humidity"]
-            };
+            (
+               (string)jsonObject["Location"],
+               (double)jsonObject["Temperature"],
+                (double)jsonObject["Humidity"]
+            );
         }
     }
 }

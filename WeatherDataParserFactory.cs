@@ -15,9 +15,6 @@ namespace WeatherMonitoringApp
             else
                 throw new ArgumentException("Invalid input format.");
         }
-
-
-
         private bool IsJSON(string inputData)
         {
             try
