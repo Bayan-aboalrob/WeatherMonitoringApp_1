@@ -14,13 +14,13 @@ namespace WeatherMonitoringApp
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(inputData);
 
-            XmlNode locationNode = xmlDoc.SelectSingleNode("/WeatherData/Location");
-            XmlNode temperatureNode = xmlDoc.SelectSingleNode("/WeatherData/Temperature");
-            XmlNode humidityNode = xmlDoc.SelectSingleNode("/WeatherData/Humidity");
+            var locationNode = xmlDoc.SelectSingleNode("/WeatherData/Location");
+            var temperatureNode = xmlDoc.SelectSingleNode("/WeatherData/Temperature");
+            var humidityNode = xmlDoc.SelectSingleNode("/WeatherData/Humidity");
 
-            string location = locationNode?.InnerText;
-            double temperature = ParseDouble(temperatureNode?.InnerText);
-            double humidity = ParseDouble(humidityNode?.InnerText);
+            var location = locationNode?.InnerText;
+            var temperature = ParseDouble(temperatureNode?.InnerText);
+            var humidity = ParseDouble(humidityNode?.InnerText);
 
             return new WeatherData(location, temperature, humidity);
         }

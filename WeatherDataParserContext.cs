@@ -11,7 +11,7 @@ namespace WeatherMonitoringApp
         private IWeatherDataParser _parser;
         public WeatherDataParserContext(string inputData)
         {
-            IWeatherDataParserFactory parserFactory = new WeatherDataParserFactory();
+            var parserFactory = new WeatherDataParserFactory();
             _parser = parserFactory.CreateParser(inputData);
         }
 

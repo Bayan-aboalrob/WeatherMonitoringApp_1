@@ -11,11 +11,11 @@
             Dictionary<string, BotConfiguration> botConfigurations = ConfigurationLoader.LoadConfigurations(configFilePath);
 
             // Creating weather bots based on loaded configurations
-            List<IWeatherBotObserver> bots = new List<IWeatherBotObserver>();
+            var bots = new List<IWeatherBotObserver>();
 
             foreach (var kvp in botConfigurations)
             {
-                string botType = kvp.Key;
+                var botType = kvp.Key;
                 BotConfiguration config = kvp.Value;
 
                 if (!config.Enabled)
@@ -37,7 +37,7 @@
                     }
             }
 
-            IWeatherSubject weatherStation = new WeatherStation(bots, null);
+            var weatherStation = new WeatherStation(bots, null);
 
 
             SimulateWeatherUpdate(weatherStation);
@@ -48,20 +48,20 @@
         private static void SimulateWeatherUpdate(IWeatherSubject weatherStation)
         {
 
-            string jsonData = "{\"Location\": \"City Name\", \"Temperature\": 32, \"Humidity\": 70}";
-            string xmlData = "<WeatherData><Location>City Name</Location><Temperature>32</Temperature><Humidity>70</Humidity></WeatherData>";
+            var jsonData = "{\"Location\": \"City Name\", \"Temperature\": 32, \"Humidity\": 70}";
+            var xmlData = "<WeatherData><Location>City Name</Location><Temperature>32</Temperature><Humidity>70</Humidity></WeatherData>";
 
 
-            IWeatherDataParserFactory parserFactory = new WeatherDataParserFactory();
-            IWeatherDataParser jsonParser = parserFactory.CreateParser(jsonData);
-            IWeatherDataParser xmlParser = parserFactory.CreateParser(xmlData);
+            var parserFactory = new WeatherDataParserFactory();
+            var jsonParser = parserFactory.CreateParser(jsonData);
+            var xmlParser = parserFactory.CreateParser(xmlData);
 
 
-            WeatherData jsonDataParsed = jsonParser.DataParse(jsonData);
+            var jsonDataParsed = jsonParser.DataParse(jsonData);
             weatherStation.SetWeatherData(jsonDataParsed);
 
 
-            WeatherData xmlDataParsed = xmlParser.DataParse(xmlData);
+            var xmlDataParsed = xmlParser.DataParse(xmlData);
             weatherStation.SetWeatherData(xmlDataParsed);
         }
     }

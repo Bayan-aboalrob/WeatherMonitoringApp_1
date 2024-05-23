@@ -32,7 +32,7 @@ namespace WeatherMonitoringApp
         {
             try
             {
-                XmlDocument xmlDoc = new XmlDocument();
+                var xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(inputData);
                 return true;
             }

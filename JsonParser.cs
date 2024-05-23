@@ -12,7 +12,7 @@ namespace WeatherMonitoringApp
     {
         public WeatherData DataParse(string inputData)
         {
-            JObject jsonObject = JObject.Parse(inputData);
+            var jsonObject = JObject.Parse(inputData);
 
             return new WeatherData
             (
